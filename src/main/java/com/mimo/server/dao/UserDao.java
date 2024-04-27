@@ -4,5 +4,8 @@ import com.mimo.server.dto.UserDto;
 import com.mimo.server.dto.VideoDto;
 
 public interface UserDao {
-	public UserDto getUser(int id);
+
+    public UserDto getUser(int id);
+
+    public boolean signUp(UserDto user);
 }
