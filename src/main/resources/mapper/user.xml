@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.UserDao">
-
     <select id="getUser" parameterType="int" resultType="UserDto">
-        SELECT 
-			id
-			, username
-        FROM user 
-        WHERE id = #{id}
+        SELECT * FROM user WHERE id = #{id}
     </select>
 
+    <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT
+        INTO user (id, username, usercontract, accesstoken, refreshtoken)
+        VALUES (#{userId}, #{userName}, #{userContract}, #{accessToken}, #{refreshToken});
+    </insert>
 </mapper>
