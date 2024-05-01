@@ -10,7 +10,7 @@
 
     <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="userId">
         INSERT
-        INTO user (id,username, usercontract, accesstoken, refreshtoken)
-        VALUES (0,#{userName}, #{userContract}, #{accessToken}, #{refreshToken});
+        INTO user (id,username, usercontact, accesstoken, refreshtoken)
+        VALUES (0,#{userName}, #{userContact}, #{accessToken}, #{refreshToken});
     </insert>
 </mapper>
