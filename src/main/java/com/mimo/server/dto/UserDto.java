@@ -4,7 +4,7 @@ public class UserDto {
 
     private int userId;
     private String userName;
-    private String userContract;
+    private String userContact;
     private String accessToken;
     private String refreshToken;
 
@@ -24,27 +24,25 @@ public class UserDto {
         this.userName = userName;
     }
 
-    public String getUserContract() {
-        return userContract;
+    public String getUserContact() {
+        return userContact;
     }
 
-    public void setUserContract(String userContract) {
-        this.userContract = userContract;
-    }
 
     public String getAccessToken() {
         return accessToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
 
     public String getRefreshToken() {
         return refreshToken;
     }
 
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
+
+    public boolean validation() {
+        if (this.userContact == null || this.userName == null || this.refreshToken == null || this.accessToken == null) {
+            return false;
+        }
+        return true;
     }
 }
