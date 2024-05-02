@@ -21,7 +21,7 @@ public class ApiUtil {
      * @param message response message
      * @return @{@link ApiErrorResult}
      */
-    public static <T> ApiErrorResult<T> error(CustomErrorCode code, T message) {
+    public static <T> ApiErrorResult<T> error(int code, String message) {
         return new ApiErrorResult<>(code, message);
     }
 
@@ -38,20 +38,21 @@ public class ApiUtil {
     }
 
     public static class ApiErrorResult<T> {
-        private final CustomErrorCode statusCode;
-        private final T message;
+        private final int statusCode;
+        private final String message;
 
-        public ApiErrorResult(CustomErrorCode customErrorCode, T message) {
+        public ApiErrorResult(int customErrorCode, String message) {
             this.statusCode = customErrorCode;
             this.message = message;
         }
 
-        public CustomErrorCode getStatusCode() {
+        public int getStatusCode() {
             return statusCode;
         }
 
-        public T getMessage() {
+        public String getMessage() {
             return message;
         }
+
     }
 }
