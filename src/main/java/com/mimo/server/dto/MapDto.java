@@ -7,6 +7,6 @@ public class MapDto {
 
     public int id;
     public String name;
-    public String markerLatitude;
-    public String markerLongitude;
+    public Long latitude;
+    public Long longitude;
 }

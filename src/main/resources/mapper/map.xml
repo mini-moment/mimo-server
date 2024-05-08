@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.MapDao">
-    <select id="getMarkers" parameterType="" resultType="UserDto">
-        SELECT * FROM user WHERE id = #{id}
+    <select id="getMarkers" resultType="MapDto">
+        SELECT * FROM user
     </select>
 
 
