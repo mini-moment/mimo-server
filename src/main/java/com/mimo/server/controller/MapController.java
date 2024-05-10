@@ -27,14 +27,13 @@ public class MapController {
 
     @GetMapping("/markers")
     @Operation(summary = "위도, 경도, radius에 따른 마커들을 전달해줍니다.")
-    public ApiSuccessResult<List<MapDto>> getMarkers( Double latitude,  Double longitude,  Double radius) {
+    public ApiSuccessResult<List<MapDto>> getMarkers(Double latitude, Double longitude, Double radius) {
         try {
             HashMap<String, Object> location = new HashMap<>();
             location.put("latitude", latitude);
             location.put("longitude", longitude);
             location.put("radius", radius);
             List<MapDto> markers = service.getMarkers(location);
-            log.debug(latitude + " " + longitude + " " + radius);
             log.debug("markers : {}", markers);
             return ApiUtil.success(markers);
         } catch (Exception e) {

@@ -8,7 +8,7 @@
         SELECT
         *
         FROM region
-        WHERE  (6371 * ACOS(
+        WHERE (6371 * ACOS(
         COS(RADIANS(#{latitude}))
         * COS(RADIANS(latitude))
         * COS(RADIANS(longitude) - RADIANS(#{longitude}))

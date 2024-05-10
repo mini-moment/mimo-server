@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
- PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
- "http://mybatis.org/dtd/mybatis-3-config.dtd">
- 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
 
     <typeAliases>
-        <typeAlias type="com.mimo.server.dto.UserDto" alias="UserDto" />
+        <typeAlias type="com.mimo.server.dto.UserDto" alias="UserDto"/>
         <typeAlias type="com.mimo.server.dto.MapDto" alias="MapDto"/>
     </typeAliases>
 
     <environments default="development">
         <environment id="development">
-            <transactionManager type="JDBC" />
+            <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mimo_db?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8" />
-                <property name="username" value="root" />
-                <property name="password" value="kht072623!" />
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://127.0.0.1:3306/mimo_db?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="kht072623!"/>
             </dataSource>
         </environment>
     </environments>
-    
+
     <mappers>
-        <mapper resource="mapper/user.xml" />
+        <mapper resource="mapper/user.xml"/>
         <mapper resource="mapper/map.xml"/>
     </mappers>
-    
+
 </configuration>
 
 

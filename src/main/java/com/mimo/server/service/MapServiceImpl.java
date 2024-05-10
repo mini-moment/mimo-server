@@ -15,9 +15,8 @@ import java.util.Objects;
 @Slf4j
 public class MapServiceImpl implements MapService {
     @Override
-    public List<MapDto> getMarkers(HashMap<String , Object> map) {
+    public List<MapDto> getMarkers(HashMap<String, Object> map) {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
-            log.debug(map.get("latitude") + " " + map.get("longitude") + " " + map.get("radius"));
             MapDao dao = session.getMapper(MapDao.class);
             return dao.getMarkers(map);
         }
