@@ -8,6 +8,7 @@
     <typeAliases>
         <typeAlias type="com.mimo.server.dto.UserDto" alias="UserDto"/>
         <typeAlias type="com.mimo.server.dto.MapDto" alias="MapDto"/>
+        <typeAlias type="com.mimo.server.dto.TagDto" alias="TagDto"/>
     </typeAliases>
 
     <environments default="development">
@@ -26,24 +27,7 @@
     <mappers>
         <mapper resource="mapper/user.xml"/>
         <mapper resource="mapper/map.xml"/>
+        <mapper resource="mapper/tag.xml"/>
     </mappers>
 
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
