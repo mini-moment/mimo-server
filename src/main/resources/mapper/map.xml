@@ -5,7 +5,7 @@
 
 <mapper namespace="com.mimo.server.dao.MapDao">
     <select id="getMarkers" resultType="MapDto">
-        SELECT * FROM user
+        SELECT * FROM region
     </select>
 
 
