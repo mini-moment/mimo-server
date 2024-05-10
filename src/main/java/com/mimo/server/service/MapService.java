@@ -5,5 +5,5 @@ import java.util.*;
 
 public interface MapService {
 
-    List<MapDto> getMarkers(Long latitude, Long longitude, Double radius);
+    List<MapDto> getMarkers(HashMap<String, Object> location);
 }

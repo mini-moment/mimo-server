@@ -15,9 +15,9 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mimodb?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8" />
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mimo_db?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8" />
                 <property name="username" value="root" />
-                <property name="password" value="ssafy" />
+                <property name="password" value="kht072623!" />
             </dataSource>
         </environment>
     </environments>

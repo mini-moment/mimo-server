@@ -4,19 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.MapDao">
-    <select id="getMarkers" resultType="MapDto">
-
-        SELECT id, latitude, longitude,
-        (6371 * acos(
-        cos(radians(#{centerLatitude}))
-        * cos(radians(latitude))
-        * cos(radians(longitude) - radians(#{centerLongitude}))
-        + sin(radians(#{centerLatitude}))
-        * sin(radians(latitude))
-        )) AS distance
-        FROM your_table_name
-        HAVING distance < #{radius}
-        ORDER BY distance
+    <select id="getMarkers" parameterType="hashmap" resultType="MapDto">
+        SELECT
+        *
+        FROM region
+        WHERE  (6371 * ACOS(
+        COS(RADIANS(#{latitude}))
+        * COS(RADIANS(latitude))
+        * COS(RADIANS(longitude) - RADIANS(#{longitude}))
+        + SIN(RADIANS(#{latitude}))
+        * SIN(RADIANS(latitude))
+        )) &lt; #{radius}
     </select>
 
 
