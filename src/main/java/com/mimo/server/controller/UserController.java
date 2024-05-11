@@ -28,7 +28,7 @@ public class UserController {
     @Operation(summary = "id에 해당하는 User를 반환합니다")
     public UserDto getUser(@PathVariable int id) {
         try {
-            UserDto user = service.getUser(id);
+            UserDto user = service.getUserByAccessToken(id);
             log.debug("user : {}", user);
             return user;
         } catch (Exception e) {
