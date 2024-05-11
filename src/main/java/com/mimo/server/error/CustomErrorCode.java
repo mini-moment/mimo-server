@@ -3,7 +3,8 @@ package com.mimo.server.error;
 import org.springframework.http.HttpStatus;
 
 public enum CustomErrorCode {
-    INVALID_DATA_FORMAT(ErrorMessage.INVALID_DATA_FORMAT, HttpStatus.BAD_REQUEST, 400);
+    INVALID_DATA_FORMAT(ErrorMessage.INVALID_DATA_FORMAT, HttpStatus.BAD_REQUEST, 400),
+	VIDEO_UPLOAD_SERVER_ERROR(ErrorMessage.VIDEO_UPLOAD_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR, 512);
     private final String message;
     private final HttpStatus httpStatus;
 
