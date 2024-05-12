@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class PostServiceImpl implements PostService {
     @Override
-    public boolean insertPost(PostDto post) {
+    public PostDto insertPost(PostDto post) {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             PostDao dao = session.getMapper(PostDao.class);
-            return dao.insertPost(post);
+            dao.insertPost(post);
+            return post;
         }
     }
 }
