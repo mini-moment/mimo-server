@@ -8,6 +8,10 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
 
+    <select id="getUserByAccessToken" parameterType="String" resultType="UserDto">
+        SELECT * FROM user WHERE accesstoken = #{accessToken}
+    </select>
+
     <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="userId">
         INSERT
         INTO user (id,username, usercontact, accesstoken, refreshtoken)
