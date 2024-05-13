@@ -2,6 +2,7 @@ package com.mimo.server.service;
 
 import com.mimo.server.dao.MapDao;
 import com.mimo.server.dto.MapDto;
+import com.mimo.server.dto.PostDto;
 import com.mimo.server.util.MybatisConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +16,7 @@ import java.util.Objects;
 @Slf4j
 public class MapServiceImpl implements MapService {
     @Override
-    public List<MapDto> getMarkers(HashMap<String, Object> map) {
+    public List<PostDto> getMarkers(HashMap<String, Object> map) {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             MapDao dao = session.getMapper(MapDao.class);
             return dao.getMarkers(map);

@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.MapDao">
-    <select id="getMarkers" parameterType="hashmap" resultType="MapDto">
+    <select id="getMarkers" parameterType="hashmap" resultType="PostDto">
         SELECT
         *
-        FROM region
+        FROM post
         WHERE (6371 * ACOS(
         COS(RADIANS(#{latitude}))
         * COS(RADIANS(latitude))
