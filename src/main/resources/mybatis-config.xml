@@ -10,6 +10,7 @@
         <typeAlias type="com.mimo.server.dto.MapDto" alias="MapDto"/>
         <typeAlias type="com.mimo.server.dto.TagDto" alias="TagDto"/>
         <typeAlias type="com.mimo.server.dto.PostDto" alias="PostDto"/>
+        <typeAlias type="com.mimo.server.dto.HashTagDto" alias="HashTagDto"/>
     </typeAliases>
 
     <environments default="development">
@@ -30,6 +31,7 @@
         <mapper resource="mapper/map.xml"/>
         <mapper resource="mapper/tag.xml"/>
         <mapper resource="mapper/post.xml"/>
+        <mapper resource="mapper/hashtag.xml"/>
     </mappers>
 
 </configuration>
