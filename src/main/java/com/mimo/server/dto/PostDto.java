@@ -18,8 +18,6 @@ public class PostDto {
     private int userId;
     @NonNull
     private String videoUrl;
-    private int regionId;
-    private long latitude;
-    private long longitude;
+    private int markerId;
     private List<TagDto> tagList;
 }
