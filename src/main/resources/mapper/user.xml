@@ -12,7 +12,7 @@
         SELECT * FROM user WHERE accesstoken = #{accessToken}
     </select>
 
-    <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
         INTO user (id,username, usercontact, accesstoken, refreshtoken)
         VALUES (0,#{userName}, #{userContact}, #{accessToken}, #{refreshToken});
