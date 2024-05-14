@@ -7,7 +7,7 @@
 
     <insert id="insertPost" parameterType="postDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
-        INTO post (id,title, userid, videourl, regionid,lat,lng)
-        VALUES (0,#{title}, #{userId}, #{videoUrl},#{regionId}, #{latitude}, #{longitude});
+        INTO post (id,title, userid, videourl, markerID)
+        VALUES (0,#{title}, #{userId}, #{videoUrl},#{markerId});
     </insert>
 </mapper>
