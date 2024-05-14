@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class MapDto {
+public class MarkerDto {
 
     public int id;
     public int postId;
