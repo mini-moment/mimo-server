@@ -7,7 +7,7 @@
     <select id="getMarkers" parameterType="hashmap" resultType="MarkerDto">
         SELECT
         *
-        FROM region
+        FROM marker
         WHERE (6371 * ACOS(
         COS(RADIANS(#{latitude}))
         * COS(RADIANS(latitude))
