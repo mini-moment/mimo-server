@@ -1,10 +1,10 @@
 package com.mimo.server.service;
 
-import com.mimo.server.dto.MapDto;
+import com.mimo.server.dto.MarkerDto;
 
 import java.util.*;
 
 public interface MapService {
 
-    List<MapDto> getMarkers(HashMap<String, Object> location);
+    List<MarkerDto> getMarkers(HashMap<String, Object> location);
 }

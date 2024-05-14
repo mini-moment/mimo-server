@@ -5,10 +5,10 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class MapDto {
+public class MarkerDto {
 
     public int id;
-    public String name;
+    public int postId;
     public Double latitude;
     public Double longitude;
 }
