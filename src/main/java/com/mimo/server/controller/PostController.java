@@ -32,17 +32,15 @@ public class PostController {
     public ApiUtil.ApiSuccessResult<Boolean> insertPost(@RequestBody PostDto post, HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
         UserDto user = userService.getUserByAccessToken(authorizationHeader);
-        int regionId = post.getRegionId();
-        if (regionId == 0) {
-            regionId = 1;
+        int markerId = post.getMarkerId();
+        if (markerId == 0) {
+            markerId = 1;
         }
         PostDto dto = new PostDto(post.getId(),
                 post.getTitle(),
                 user.getId(),
                 post.getVideoUrl(),
-                regionId,
-                post.getLatitude(),
-                post.getLongitude(),
+                markerId,
                 post.getTagList()
         );
         int postId = postService.insertPost(dto).getId();
