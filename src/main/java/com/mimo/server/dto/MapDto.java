@@ -8,7 +8,7 @@ import lombok.ToString;
 public class MapDto {
 
     public int id;
-    public String name;
+    public int postId;
     public Double latitude;
     public Double longitude;
 }
