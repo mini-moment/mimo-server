@@ -3,6 +3,7 @@ package com.mimo.server;
 
 import java.io.File;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +17,13 @@ public class MimoServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MimoServerApplication.class, args);
 	}
+	
+	@Value("${path.videoStoragePath}")
+	private String videoStoragePath;
 
 	@Bean
 	public boolean createVideoDirectory() {
-		String videoStoragePath = System.getProperty("user.dir").toString() + "/video";
 		File Folder = new File(videoStoragePath);
-
 		if (!Folder.exists()) {
 			try {
 				Folder.mkdir();
