@@ -10,4 +10,16 @@
         INTO hashtag (id, postId, tagId)
         VALUES (0, #{postId}, #{tagId});
     </insert>
+    
+    <select id="searchTagListByPostId" parameterType="int" resultType="TagDto">
+		SELECT
+			T.id
+			, T.name
+		FROM
+			hashtag H, tag T
+		WHERE
+			H.postId = #{id}
+			AND
+			H.tagId = T.id
+    </select>
 </mapper>

@@ -4,10 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.PostDao">
+	<resultMap id="PostResultMap" type="PostDto">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="userId" property="userId"/>
+		<result column="videoUrl" property="videoUrl"/>
+		<result column="markerId" property="markerId"/>
+		
+		<collection column="id" javaType="java.util.List" ofType="TagDto" property="tagList" select="com.mimo.server.dao.HashTagDao.searchTagListByPostId"/>
+	</resultMap>
 
     <insert id="insertPost" parameterType="postDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
         INTO post (id,title, userid, videourl, markerID)
         VALUES (0,#{title}, #{userId}, #{videoUrl},#{markerId});
     </insert>
+    
+    <select id="searchPostsByIds" parameterType="int[]" resultMap="PostResultMap">
+		SELECT
+			*
+		FROM
+			post
+		WHERE
+			id IN
+			<foreach item="postId" collection="array" open="(" separator="," close=")">
+				#{postId}
+			</foreach>
+	</select>
 </mapper>
