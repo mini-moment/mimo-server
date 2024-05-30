@@ -1,5 +1,14 @@
 package com.mimo.server.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.mimo.server.dto.HashTagDto;
 import com.mimo.server.dto.PostDto;
 import com.mimo.server.dto.UserDto;
@@ -7,13 +16,11 @@ import com.mimo.server.service.HashTagService;
 import com.mimo.server.service.PostService;
 import com.mimo.server.service.UserService;
 import com.mimo.server.util.ApiUtil;
+
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -54,5 +61,16 @@ public class PostController {
                 }).toList();
         hashTagService.insertHashTagList(hashTagList);
         return ApiUtil.success(true);
+    }
+    
+    @GetMapping("posts")
+    @Operation(summary = "전달받은 Post ID 리스트에 대한 Post 리스트를 반환합니다.")
+    public ApiUtil.ApiSuccessResult<List<PostDto>> getPosts(@RequestBody int[] ids){
+    	try {
+            List<PostDto> posts = postService.getPostsByIds(ids);
+            return ApiUtil.success(posts);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }
