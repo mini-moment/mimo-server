@@ -5,18 +5,17 @@ import com.mimo.server.service.UserService;
 import com.mimo.server.util.ApiUtil;
 import com.mimo.server.util.ApiUtil.ApiSuccessResult;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 @ControllerAdvice
+@RequiredArgsConstructor
 public class UserController {
 
-
-    @Autowired
-    UserService service;
+    private final UserService service;
 
     @PostMapping("/signUp")
     @Operation(summary = "유저의 정보를 바탕으로 회원가입을 합니다.")
@@ -28,7 +27,7 @@ public class UserController {
     @Operation(summary = "id에 해당하는 User를 반환합니다")
     public UserDto getUser(@PathVariable int id) {
         try {
-            UserDto user = service.getUserByAccessToken(id);
+            UserDto user = service.getUserById(id);
             log.debug("user : {}", user);
             return user;
         } catch (Exception e) {

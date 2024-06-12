@@ -15,10 +15,10 @@ import static com.mimo.server.error.CustomErrorCode.INVALID_DATA_FORMAT;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public UserDto getUserByAccessToken(int id) {
+    public UserDto getUserById(int id) {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             UserDao dao = session.getMapper(UserDao.class);
-            return dao.getUserByAccessToken(id);
+            return dao.getUserById(id);
         }
     }
 
