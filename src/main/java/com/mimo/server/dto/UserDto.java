@@ -15,9 +15,10 @@ public class UserDto {
     private String userContact;
     private String accessToken;
     private String refreshToken;
+    private String profileImageUrl;
 
     public boolean validation() {
-        if (this.userContact == null || this.userName == null || this.refreshToken == null || this.accessToken == null) {
+        if (this.userContact == null || this.userName == null || this.refreshToken == null || this.accessToken == null || this.profileImageUrl == null) {
             return false;
         }
         return true;
