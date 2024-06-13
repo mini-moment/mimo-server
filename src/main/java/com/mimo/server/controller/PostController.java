@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mimo.server.dto.HashTagDto;
@@ -65,7 +66,7 @@ public class PostController {
     
     @GetMapping("posts")
     @Operation(summary = "전달받은 Post ID 리스트에 대한 Post 리스트를 반환합니다.")
-    public ApiUtil.ApiSuccessResult<List<PostDto>> getPosts(@RequestBody int[] ids){
+    public ApiUtil.ApiSuccessResult<List<PostDto>> getPosts(@RequestParam int[] ids){
     	try {
             List<PostDto> posts = postService.getPostsByIds(ids);
             return ApiUtil.success(posts);
