@@ -83,6 +83,12 @@ public class PostController {
             httpHeaders.add(HttpHeaders.CONTENT_TYPE, "image/png");
         } else if (url.contains("jpeg")) {
             httpHeaders.add(HttpHeaders.CONTENT_TYPE, "image/jpeg");
+    public ApiUtil.ApiSuccessResult<List<PostDto>> getPosts(@RequestParam int[] ids){
+    	try {
+            List<PostDto> posts = postService.getPostsByIds(ids);
+            return ApiUtil.success(posts);
+        } catch (Exception e) {
+            throw e;
         }
         return new ResponseEntity<>(postService.getThumbnail(url), httpHeaders, HttpStatus.OK);
     }
