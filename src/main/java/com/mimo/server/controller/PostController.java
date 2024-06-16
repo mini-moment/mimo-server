@@ -77,7 +77,7 @@ public class PostController {
 
     @GetMapping("thumbnail/{url}")
     @Operation(summary = "경로에 해당하는 Post의 썸네일을 반환합니다.")
-    public ResponseEntity<Resource> display(@PathVariable String url) {
+    public ResponseEntity<Resource> getThumbnail(@PathVariable String url) {
         HttpHeaders httpHeaders = new HttpHeaders();
         if (url.contains("png")) {
             httpHeaders.add(HttpHeaders.CONTENT_TYPE, "image/png");
