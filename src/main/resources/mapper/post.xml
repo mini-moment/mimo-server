@@ -16,8 +16,8 @@
 
     <insert id="insertPost" parameterType="postDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
-        INTO post (id,title, userid, videourl, markerID)
-        VALUES (0,#{title}, #{userId}, #{videoUrl},#{markerId});
+        INTO post (id,title, userid, videourl, markerID, thumbnail)
+        VALUES (0,#{title}, #{userId}, #{videoUrl},#{markerId}, #{thumbnailUrl});
     </insert>
     
     <select id="searchPostsByIds" parameterType="int[]" resultMap="PostResultMap">
