@@ -11,6 +11,7 @@
         <typeAlias type="com.mimo.server.dto.TagDto" alias="TagDto"/>
         <typeAlias type="com.mimo.server.dto.PostDto" alias="PostDto"/>
         <typeAlias type="com.mimo.server.dto.HashTagDto" alias="HashTagDto"/>
+        <typeAlias type="com.mimo.server.dto.ResponsePostListDto" alias="ResponsePostListDto" />
     </typeAliases>
 
     <environments default="development">
@@ -19,7 +20,7 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/mimo_db?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/>
+                          value="jdbc:mysql://127.0.0.1:3306/mimoDB?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="kht072623!"/>
             </dataSource>

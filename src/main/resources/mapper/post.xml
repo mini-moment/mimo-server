@@ -4,14 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mimo.server.dao.PostDao">
-	<resultMap id="PostResultMap" type="PostDto">
+	<resultMap id="PostResultMap" type="ResponsePostListDto">
 		<id column="id" property="id"/>
 		<result column="title" property="title"/>
 		<result column="userId" property="userId"/>
 		<result column="videoUrl" property="videoUrl"/>
 		<result column="markerId" property="markerId"/>
-		
+		<result column="thumbnail" property="videoThumbnailUrl" />
+
 		<collection column="id" javaType="java.util.List" ofType="TagDto" property="tagList" select="com.mimo.server.dao.HashTagDao.searchTagListByPostId"/>
+		<collection column="userId" javaType="UserDto" property="userInfo" select="com.mimo.server.dao.UserDao.getUserById"/>
 	</resultMap>
 
     <insert id="insertPost" parameterType="postDto" useGeneratedKeys="true" keyProperty="id">
