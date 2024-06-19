@@ -72,7 +72,7 @@ public class PostController {
 
     @GetMapping("posts")
     @Operation(summary = "전달받은 Post ID 리스트에 대한 Post 리스트를 반환합니다.")
-    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPosts(@RequestBody int[] ids) {
+    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPosts(@RequestParam int[] ids) {
 
         List<ResponsePostListDto> postList = postService.getPostsByIds(ids);
 
