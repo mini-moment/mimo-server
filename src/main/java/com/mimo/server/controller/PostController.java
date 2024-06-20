@@ -1,7 +1,9 @@
 package com.mimo.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.mimo.server.dto.ResponsePostListDto;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -70,9 +72,11 @@ public class PostController {
 
     @GetMapping("posts")
     @Operation(summary = "전달받은 Post ID 리스트에 대한 Post 리스트를 반환합니다.")
-    public ApiUtil.ApiSuccessResult<List<PostDto>> getPosts(@RequestBody int[] ids) {
-        List<PostDto> posts = postService.getPostsByIds(ids);
-        return ApiUtil.success(posts);
+    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPosts(@RequestParam int[] ids) {
+
+        List<ResponsePostListDto> postList = postService.getPostsByIds(ids);
+
+        return ApiUtil.success(postList);
     }
 
     @GetMapping("thumbnail/{url}")
@@ -86,5 +90,8 @@ public class PostController {
         }
         return new ResponseEntity<>(postService.getThumbnail(url), httpHeaders, HttpStatus.OK);
     }
+
+
+
 
 }

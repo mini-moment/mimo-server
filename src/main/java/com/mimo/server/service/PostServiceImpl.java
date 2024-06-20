@@ -2,6 +2,7 @@ package com.mimo.server.service;
 
 import com.mimo.server.dao.PostDao;
 import com.mimo.server.dto.PostDto;
+import com.mimo.server.dto.ResponsePostListDto;
 import com.mimo.server.error.CustomErrorCode;
 import com.mimo.server.error.CustomException;
 import com.mimo.server.util.MybatisConfig;
@@ -36,7 +37,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getPostsByIds(int[] ids) {
+    public List<ResponsePostListDto> getPostsByIds(int[] ids) {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             PostDao dao = session.getMapper(PostDao.class);
             return dao.searchPostsByIds(ids);
