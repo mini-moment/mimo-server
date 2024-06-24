@@ -7,4 +7,5 @@ import java.util.*;
 public interface MapService {
 
     List<MarkerDto> getMarkers(HashMap<String, Object> location);
+    void insertMarker(MarkerDto markerDto);
 }

@@ -5,17 +5,22 @@
 
 <mapper namespace="com.mimo.server.dao.MapDao">
     <select id="getMarkers" parameterType="hashmap" resultType="MarkerDto">
-        SELECT
-        *
+        SELECT *
         FROM marker
         WHERE (6371 * ACOS(
-        COS(RADIANS(#{latitude}))
-        * COS(RADIANS(latitude))
-        * COS(RADIANS(longitude) - RADIANS(#{longitude}))
-        + SIN(RADIANS(#{latitude}))
-        * SIN(RADIANS(latitude))
-        )) &lt; #{radius}
+                        COS(RADIANS(#{latitude}))
+                        * COS(RADIANS(latitude))
+                        * COS(RADIANS(longitude) - RADIANS(#{longitude}))
+                    + SIN(RADIANS(#{latitude}))
+                            * SIN(RADIANS(latitude))
+            )) &lt; #{radius}
     </select>
+
+    <insert id="insertMarker" parameterType="markerDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT
+        INTO marker (id, postid, latitude, longitude)
+        VALUES (0, #{postId}, #{latitude}, #{longitude});
+    </insert>
 
 
 </mapper>
