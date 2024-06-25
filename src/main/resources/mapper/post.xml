@@ -9,7 +9,6 @@
 		<result column="title" property="title"/>
 		<result column="userId" property="userId"/>
 		<result column="videoUrl" property="videoUrl"/>
-		<result column="markerId" property="markerId"/>
 		<result column="thumbnail" property="videoThumbnailUrl" />
 
 		<collection column="id" javaType="java.util.List" ofType="TagDto" property="tagList" select="com.mimo.server.dao.HashTagDao.searchTagListByPostId"/>
@@ -18,8 +17,8 @@
 
     <insert id="insertPost" parameterType="postDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
-        INTO post (id,title, userid, videourl, markerID, thumbnail)
-        VALUES (0,#{title}, #{userId}, #{videoUrl},#{markerId}, #{thumbnailUrl});
+        INTO post (id,title, userid, videourl,thumbnail)
+        VALUES (0,#{title}, #{userId}, #{videoUrl},#{thumbnailUrl});
     </insert>
     
     <select id="searchPostsByIds" parameterType="int[]" resultMap="PostResultMap">

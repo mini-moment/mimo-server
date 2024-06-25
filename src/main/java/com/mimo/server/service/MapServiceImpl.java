@@ -20,4 +20,12 @@ public class MapServiceImpl implements MapService {
             return dao.getMarkers(map);
         }
     }
+
+    @Override
+    public void insertMarker(MarkerDto markerDto) {
+        try (SqlSession session = MybatisConfig.getSqlSession();) {
+            MapDao dao = session.getMapper(MapDao.class);
+            dao.insertMarker(markerDto);
+        }
+    }
 }

@@ -9,4 +9,6 @@ public interface MapDao {
 
 
     List<MarkerDto> getMarkers(HashMap<String, Object> map);
+
+    void insertMarker(MarkerDto markerDto);
 }

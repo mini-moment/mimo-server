@@ -22,7 +22,6 @@ public class PostDto {
     private int userId;
     @NonNull
     private String videoUrl;
-    private int markerId;
     private List<TagDto> tagList;
     private String thumbnailUrl;
 }

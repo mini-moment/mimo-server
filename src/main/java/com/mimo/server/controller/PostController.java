@@ -1,18 +1,15 @@
 package com.mimo.server.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.mimo.server.dto.ResponsePostListDto;
+import com.mimo.server.dto.*;
+import com.mimo.server.service.MapService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.mimo.server.dto.HashTagDto;
-import com.mimo.server.dto.PostDto;
-import com.mimo.server.dto.UserDto;
 import com.mimo.server.service.HashTagService;
 import com.mimo.server.service.PostService;
 import com.mimo.server.service.UserService;
@@ -35,29 +32,28 @@ public class PostController {
     private final PostService postService;
     private final UserService userService;
     private final HashTagService hashTagService;
+    private final MapService mapService;
 
     @PostMapping("insert")
     @Operation(summary = "포스트를 작성합니다.")
     public ApiUtil.ApiSuccessResult<Boolean> insertPost(
             @RequestPart("post") PostDto post,
             @RequestPart("thumbnail") MultipartFile thumbnail,
+            @RequestPart("latitude") Double latitude,
+            @RequestPart("longitude") Double longitude,
             HttpServletRequest request) {
         String authorizationHeader = request.getHeader("Authorization");
         UserDto user = userService.getUserByAccessToken(authorizationHeader);
-        int markerId = post.getMarkerId();
-        if (markerId == 0) {
-            markerId = 1;
-        }
         String thumbnailUrl = postService.saveThumbnail(thumbnail);
         PostDto dto = new PostDto(post.getId(),
                 post.getTitle(),
                 user.getId(),
                 post.getVideoUrl(),
-                markerId,
                 post.getTagList(),
                 thumbnailUrl
         );
         int postId = postService.insertPost(dto).getId();
+        mapService.insertMarker(new MarkerDto(0, postId, latitude, longitude));
         List<HashTagDto> hashTagList = dto.getTagList().stream()
                 .map(tagDto -> {
                     HashTagDto hashTagDto = new HashTagDto(
@@ -90,8 +86,6 @@ public class PostController {
         }
         return new ResponseEntity<>(postService.getThumbnail(url), httpHeaders, HttpStatus.OK);
     }
-
-
 
 
 }
