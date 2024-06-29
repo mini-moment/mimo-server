@@ -13,4 +13,6 @@ public interface PostDao {
 	public boolean insertPost(PostDto post);
 	
 	public List<ResponsePostListDto> searchPostsByIds(@Param("array") int[] ids);
+
+	public int[] searchPostsIdsByAccessToken(String accessToken);
 }

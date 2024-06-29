@@ -15,4 +15,6 @@ public interface PostService {
     public String saveThumbnail(MultipartFile thumbnail);
 
     public Resource getThumbnail(String url);
+
+    public int[] getPostsIdsByAccessToken(String accessToken);
 }

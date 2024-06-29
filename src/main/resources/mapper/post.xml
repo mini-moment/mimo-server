@@ -32,4 +32,13 @@
 				#{postId}
 			</foreach>
 	</select>
+
+	<select id="searchPostsIdsByAccessToken" parameterType="String" resultType="int">
+		SELECT
+		    post.id
+		FROM
+			post, user
+		WHERE user.accesstoken = #{accessToken} and post.userId = user.id
+	</select>
+
 </mapper>
