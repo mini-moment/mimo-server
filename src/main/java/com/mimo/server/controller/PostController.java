@@ -88,7 +88,7 @@ public class PostController {
 
     @GetMapping("posts/my")
     @Operation(summary = "해당 유저의 Post List를 받아옵니다")
-    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPostsByAccessToken(String accessToken) {
+    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPostsByAccessToken(@RequestHeader("Authorization") String accessToken) {
         int[] postIds = postService.getPostsIdsByAccessToken(accessToken);
         List<ResponsePostListDto> postList = postService.getPostsByIds(postIds);
 
