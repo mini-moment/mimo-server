@@ -1,25 +1,24 @@
 package com.mimo.server.controller;
 
-import java.util.List;
-
 import com.mimo.server.dto.*;
+import com.mimo.server.service.HashTagService;
 import com.mimo.server.service.MapService;
+import com.mimo.server.service.PostService;
+import com.mimo.server.service.UserService;
+import com.mimo.server.util.ApiUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.mimo.server.service.HashTagService;
-import com.mimo.server.service.PostService;
-import com.mimo.server.service.UserService;
-import com.mimo.server.util.ApiUtil;
-
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Collections;
+import java.util.List;
 
 
 @RestController
@@ -87,5 +86,13 @@ public class PostController {
         return new ResponseEntity<>(postService.getThumbnail(url), httpHeaders, HttpStatus.OK);
     }
 
+    @GetMapping("posts/my")
+    @Operation(summary = "해당 유저의 Post List를 받아옵니다")
+    public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPostsByAccessToken(@RequestHeader("Authorization") String accessToken) {
+        int[] postIds = postService.getPostsIdsByAccessToken(accessToken);
+        List<ResponsePostListDto> postList = postService.getPostsByIds(postIds);
+
+        return ApiUtil.success(postList);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.mimo.server.service;
 
+import com.mimo.server.dao.MapDao;
 import com.mimo.server.dao.PostDao;
 import com.mimo.server.dto.PostDto;
 import com.mimo.server.dto.ResponsePostListDto;
@@ -62,5 +63,13 @@ public class PostServiceImpl implements PostService {
     public Resource getThumbnail(String url) {
         String path = thumbnailStoragePath + "/" + url;
         return new FileSystemResource(path);
+    }
+
+    @Override
+    public int[] getPostsIdsByAccessToken(String accessToken) {
+        try (SqlSession session = MybatisConfig.getSqlSession();) {
+            PostDao dao = session.getMapper(PostDao.class);
+            return dao.searchPostsIdsByAccessToken(accessToken);
+        }
     }
 }

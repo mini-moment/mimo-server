@@ -17,4 +17,6 @@
         INTO user (id,username, usercontact, profileimageurl, accesstoken, refreshtoken)
         VALUES (0,#{userName}, #{userContact}, #{profileImageUrl}, #{accessToken}, #{refreshToken});
     </insert>
+
+
 </mapper>
