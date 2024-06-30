@@ -18,4 +18,5 @@ public class ResponsePostListDto {
     private List<TagDto> tagList;
     private String videoThumbnailUrl;
     private UserDto userInfo;
+    private String uploadTime;
 }
