@@ -24,4 +24,5 @@ public class PostDto {
     private String videoUrl;
     private List<TagDto> tagList;
     private String thumbnailUrl;
+    private String uploadTime;
 }

@@ -6,6 +6,7 @@ import com.mimo.server.service.MapService;
 import com.mimo.server.service.PostService;
 import com.mimo.server.service.UserService;
 import com.mimo.server.util.ApiUtil;
+import com.mimo.server.util.TimeUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -49,7 +49,8 @@ public class PostController {
                 user.getId(),
                 post.getVideoUrl(),
                 post.getTagList(),
-                thumbnailUrl
+                thumbnailUrl,
+                post.getUploadTime()
         );
         int postId = postService.insertPost(dto).getId();
         mapService.insertMarker(new MarkerDto(0, postId, latitude, longitude));
@@ -70,7 +71,9 @@ public class PostController {
     public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPosts(@RequestParam int[] ids) {
 
         List<ResponsePostListDto> postList = postService.getPostsByIds(ids);
-
+        postList.forEach(dto -> {
+            dto.setUploadTime(TimeUtil.calculateTimeDifference(dto.getUploadTime()));
+        });
         return ApiUtil.success(postList);
     }
 
@@ -91,7 +94,9 @@ public class PostController {
     public ApiUtil.ApiSuccessResult<List<ResponsePostListDto>> getPostsByAccessToken(@RequestHeader("Authorization") String accessToken) {
         int[] postIds = postService.getPostsIdsByAccessToken(accessToken);
         List<ResponsePostListDto> postList = postService.getPostsByIds(postIds);
-
+        postList.forEach(dto -> {
+            dto.setUploadTime(TimeUtil.calculateTimeDifference(dto.getUploadTime()));
+        });
         return ApiUtil.success(postList);
     }
 

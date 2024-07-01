@@ -7,9 +7,9 @@
 	<resultMap id="PostResultMap" type="ResponsePostListDto">
 		<id column="id" property="id"/>
 		<result column="title" property="title"/>
-		<result column="userId" property="userId"/>
 		<result column="videoUrl" property="videoUrl"/>
 		<result column="thumbnail" property="videoThumbnailUrl" />
+		<result column="upload_time" property="uploadTime"/>
 
 		<collection column="id" javaType="java.util.List" ofType="TagDto" property="tagList" select="com.mimo.server.dao.HashTagDao.searchTagListByPostId"/>
 		<collection column="userId" javaType="UserDto" property="userInfo" select="com.mimo.server.dao.UserDao.getUserById"/>
