@@ -10,5 +10,7 @@ public interface UserDao {
 
     public UserDto getUserByAccessToken(String accessToken);
 
+    public int unRegister(int id);
+
     public int updateUser(UserDto user);
 }

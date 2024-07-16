@@ -5,6 +5,7 @@ import com.mimo.server.service.UserService;
 import com.mimo.server.util.ApiUtil;
 import com.mimo.server.util.ApiUtil.ApiSuccessResult;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,16 @@ public class UserController {
     @GetMapping("/getUser/{id}")
     @Operation(summary = "id에 해당하는 User를 반환합니다")
     public UserDto getUser(@PathVariable int id) {
-        try {
-            UserDto user = service.getUserById(id);
-            log.debug("user : {}", user);
-            return user;
-        } catch (Exception e) {
-            throw e;
-        }
+        UserDto user = service.getUserById(id);
+        log.debug("user : {}", user);
+        return user;
+    }
+
+    @DeleteMapping("/unRegister")
+    @Operation(summary = "현재 User를 삭제합니다.")
+    public ApiSuccessResult<Boolean> unRegister(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+        UserDto user = service.getUserByAccessToken(authorizationHeader);
+        return ApiUtil.success(service.unRegister(user.getId()));
     }
 }

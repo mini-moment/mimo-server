@@ -10,5 +10,7 @@ public interface UserService {
 
     public UserDto getUserByAccessToken(String accessToken);
 
+    public boolean unRegister(int id);
+
     public boolean login(UserDto user);
 }
