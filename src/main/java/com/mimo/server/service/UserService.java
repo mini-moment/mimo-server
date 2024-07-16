@@ -9,4 +9,6 @@ public interface UserService {
     public boolean signUp(UserDto user);
 
     public UserDto getUserByAccessToken(String accessToken);
+
+    public boolean login(UserDto user);
 }

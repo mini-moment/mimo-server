@@ -17,10 +17,11 @@ public class UserController {
 
     private final UserService service;
 
-    @PostMapping("/signUp")
-    @Operation(summary = "유저의 정보를 바탕으로 회원가입을 합니다.")
-    public ApiSuccessResult<Boolean> signUp(@RequestBody UserDto userDto) {
-        return ApiUtil.success(service.signUp(userDto));
+    @PostMapping("/login")
+    @Operation(summary = "유저의 정보를 바탕으로 로그인 합니다.")
+    public ApiSuccessResult<Boolean> login(@RequestBody UserDto userDto) {
+        log.debug("user : {}", userDto);
+        return ApiUtil.success(service.login(userDto));
     }
 
     @GetMapping("/getUser/{id}")

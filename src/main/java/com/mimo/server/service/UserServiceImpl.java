@@ -29,7 +29,8 @@ public class UserServiceImpl implements UserService {
         }
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             UserDao dao = session.getMapper(UserDao.class);
-            return dao.signUp(user);
+            dao.signUp(user);
+            return true;
         }
     }
 
@@ -38,6 +39,18 @@ public class UserServiceImpl implements UserService {
         try (SqlSession session = MybatisConfig.getSqlSession();) {
             UserDao dao = session.getMapper(UserDao.class);
             return dao.getUserByAccessToken(accessToken);
+        }
+    }
+
+    @Override
+    public boolean login(UserDto user) {
+        try (SqlSession session = MybatisConfig.getSqlSession();) {
+            UserDao dao = session.getMapper(UserDao.class);
+            int result = dao.updateUser(user);
+            if (result == 0) {
+                return this.signUp(user);
+            }
+            return true;
         }
     }
 }
