@@ -5,4 +5,6 @@ public class ErrorMessage {
     public static final String INVALID_DATA_FORMAT = "데이터 형식이 잘못 되었습니다.";
     public static final String VIDEO_UPLOAD_SERVER_ERROR = "서버에서 비디오 파일 업로드 시, 에러가 발생하였습니다.";
     public static final String IMAGE_UPLOAD_SERVER_ERROR = "서버에서 이미지 파일 업로스 시, 에러가 발생하였습니다.";
+
+    public static final String DELETE_USER_ERROR = "회원탈퇴에 실패했습니다.";
 }
