@@ -6,7 +6,9 @@ public interface UserDao {
 
     public UserDto getUserById(int id);
 
-    public boolean signUp(UserDto user);
+    public int signUp(UserDto user);
 
     public UserDto getUserByAccessToken(String accessToken);
+
+    public int updateUser(UserDto user);
 }

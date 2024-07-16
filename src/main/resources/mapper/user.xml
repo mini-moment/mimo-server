@@ -19,4 +19,13 @@
     </insert>
 
 
+    <update id="updateUser" parameterType="userDto" keyProperty="userContact">
+        UPDATE users
+        SET username        = #{userName},
+            usercontract    = #{userContact},
+            profileimageurl = #{profileImageUrl},
+            accesstoken     = #{accessToken},
+            refreshToken    = #{refreshToken},
+            WHERE userContact = #{userContact}
+    </update>
 </mapper>
