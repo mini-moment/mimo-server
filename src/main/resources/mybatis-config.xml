@@ -20,9 +20,9 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://127.0.0.1:3306/mimoDB?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/>
+                          value="jdbc:mysql://15.164.2.228:3306/mimoDB?serverTimezone=Asia/Seoul&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/>
                 <property name="username" value="root"/>
-                <property name="password" value="kht072623!"/>
+                <property name="password" value="mimoServer1!"/>
             </dataSource>
         </environment>
     </environments>

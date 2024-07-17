@@ -18,5 +18,19 @@
         VALUES (0,#{userName}, #{userContact}, #{profileImageUrl}, #{accessToken}, #{refreshToken});
     </insert>
 
+    <delete id="unRegister" parameterType="Int">
+        DELETE
+        FROM USER
+        where id = #{id}
+    </delete>
 
+    <update id="updateUser" parameterType="userDto" keyProperty="userContact">
+        UPDATE users
+        SET username        = #{userName},
+            usercontract    = #{userContact},
+            profileimageurl = #{profileImageUrl},
+            accesstoken     = #{accessToken},
+            refreshToken    = #{refreshToken},
+            WHERE userContact = #{userContact}
+    </update>
 </mapper>
