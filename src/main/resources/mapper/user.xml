@@ -19,9 +19,7 @@
     </insert>
 
     <delete id="unRegister" parameterType="Int">
-        DELETE
-        FROM USER
-        where id = #{id}
+        DELETE FROM user where id = #{id}
     </delete>
 
     <update id="updateUser" parameterType="userDto" keyProperty="userContact">
