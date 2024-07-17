@@ -25,12 +25,11 @@
     </delete>
 
     <update id="updateUser" parameterType="userDto" keyProperty="userContact">
-        UPDATE users
+        UPDATE user
         SET username        = #{userName},
-            usercontract    = #{userContact},
             profileimageurl = #{profileImageUrl},
             accesstoken     = #{accessToken},
-            refreshToken    = #{refreshToken},
+            refreshToken    = #{refreshToken}
             WHERE userContact = #{userContact}
     </update>
 </mapper>
