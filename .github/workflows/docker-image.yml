@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: MiniMoment Deploy 
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
+  build-project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,16 +34,30 @@ jobs:
 
       - name: Install with Maven
         run: mvn install
-
+  docker-login:
+    needs: build-project
+    runs-on: ubuntu-latest
+    steps:
       - name: Log in to Docker Hub
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
+        
+  build-docker-image:
+    needs: [build-project,docker-login]
+    runs-on: ubuntu-latest
+    steps:
       - name: Build the Docker image
         run: docker build -t ${{ secrets.DOCKER_REPO }} .
-
+  push-docker-image:
+    needs: [build-project,docker-login,build-docker-image]
+    runs-on: ubuntu-latest
+    steps:
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKER_REPO }}
 
+  deploy:
+    needs: [build-project,docker-login,build-docker-image,push-docker-image]
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to EC2 Server
         uses: appleboy/ssh-action@master
         with: 
@@ -55,6 +69,10 @@ jobs:
             if [ ! -z "$CONTAINER_ID" ]; then
               sudo docker stop $CONTAINER_ID
               sudo docker rm $CONTAINER_ID
+            fi
+            IMAGE_ID=$(sudo docker images -q ${{ secrets.DOCKER_REPO}})
+            if [! -z "$IMAGE_ID" ]; then
+              sudo docker rmi $IMAGE_ID
             fi
             sudo docker pull ${{ secrets.DOCKER_REPO }}
             sudo docker run --name ${{ secrets.DOCKER_CONTAINER_NAME }} -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
