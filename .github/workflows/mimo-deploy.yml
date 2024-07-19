@@ -54,6 +54,10 @@ jobs:
               sudo docker stop $CONTAINER_ID
               sudo docker rm $CONTAINER_ID
             fi
+            IMAGE_ID=$(sudo docker images -q ${{ secrets.DOCKER_REPO}})
+            if [! -z "$IMAGE_ID" ]; then
+              sudo docker rmi $IMAGE_ID
+            fi
             sudo docker pull ${{ secrets.DOCKER_REPO }}
             sudo docker run --name ${{ secrets.DOCKER_CONTAINER_NAME }} -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
             sudo docker logs ${{ secrets.DOCKER_CONTAINER_NAME }}
