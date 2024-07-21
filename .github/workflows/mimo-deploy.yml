@@ -49,7 +49,7 @@ jobs:
       - name: List files in the current directory
         run: ls -al
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_REPO }} -f ../Dockerfile .
+        run: docker build -t ${{ secrets.DOCKER_REPO }} -f /home/runner/work/mimo-server/Dockerfile .
         
   push-docker-image:
     runs-on: ubuntu-latest
