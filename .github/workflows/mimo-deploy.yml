@@ -59,7 +59,7 @@ jobs:
               sudo docker rm $CONTAINER_ID
             fi
             IMAGE_ID=$(sudo docker images -q ${{ secrets.DOCKER_REPO}})
-            if [! -z "$IMAGE_ID" ]; then
+            if [ ! -z "$IMAGE_ID" ]; then
               sudo docker rmi $IMAGE_ID
             fi
             sudo docker pull ${{ secrets.DOCKER_REPO }}
