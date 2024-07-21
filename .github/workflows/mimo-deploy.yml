@@ -44,8 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker-login
     steps:
+      - name: List files in the current directory
+        run: ls -al
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_REPO }} -f Dockerfile .
+        run: docker build -t ${{ secrets.DOCKER_REPO }} -f ./Dockerfile .
         
   push-docker-image:
     runs-on: ubuntu-latest
