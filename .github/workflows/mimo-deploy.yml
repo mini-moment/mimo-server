@@ -44,10 +44,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build,docker-login]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_REPO }} .
+        run: |
+            pwd
+            ls - al
+            ls target
+            docker build -t ${{ secrets.DOCKER_REPO }} .
         
   push-docker-image:
     runs-on: ubuntu-latest
