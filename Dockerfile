@@ -1,3 +1,4 @@
 FROM openjdk:17-jdk
-COPY target/mimo-*.jar app.jar
+#COPY target/mimo-*.jar app.jar
+COPY ./mimo-*.jar app.jar
 ENTRYPOINT [ "java", "-jar","app.jar" ]
