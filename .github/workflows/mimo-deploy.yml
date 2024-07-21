@@ -47,7 +47,7 @@ jobs:
       - name: Build the Docker image
         run: |
             pwd
-            ls - al
+            ls -al
             ls target
             docker build -t ${{ secrets.DOCKER_REPO }} .
         
