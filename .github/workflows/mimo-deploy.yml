@@ -45,8 +45,7 @@ jobs:
     needs: [build,docker-login]
     steps:
       - name: Build the Docker image
-        run: docker build -t ${{ secrets.DOCKER_REPO }} .
-        working-directory: ../..
+        run: pwd | ls -al | cd ../.. | docker build -t ${{ secrets.DOCKER_REPO }} .
         
   push-docker-image:
     runs-on: ubuntu-latest
