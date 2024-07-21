@@ -46,6 +46,7 @@ jobs:
     steps:
       - name: Build the Docker image
         run: docker build -t ${{ secrets.DOCKER_REPO }} .
+        working-directory: .
         
   push-docker-image:
     runs-on: ubuntu-latest
