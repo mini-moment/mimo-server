@@ -32,6 +32,7 @@ jobs:
 
       - name: Install with Maven
         run: mvn install
+        
       - name : print this directory
         run: pwd
       - name: List files in the current directory
@@ -56,14 +57,24 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        
       - name: Download JAR file
         uses: actions/download-artifact@v2
         with:
           name: mimo
+          
+      - name: Create target directory
+        run: mkdir -p target 
+
+      - name: Move JAR file to target directory
+        run: mv mimo-*.jar target/app.jar 
+        
       - name : print this directory
         run: pwd
+        
       - name: List files in the current directory
         run: ls -al
+        
       - name: Build the Docker image
         run: docker build -t ${{ secrets.DOCKER_REPO }} .
         
