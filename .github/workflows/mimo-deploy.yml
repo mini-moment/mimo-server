@@ -98,5 +98,5 @@ jobs:
               sudo docker rmi $IMAGE_ID
             fi
             sudo docker pull ${{ secrets.DOCKER_REPO }}
-            sudo docker run --name ${{ secrets.DOCKER_CONTAINER_NAME }} -d -p 8080:8080 ${{ secrets.DOCKER_REPO }}
+            sudo docker run --name ${{ secrets.DOCKER_CONTAINER_NAME }} -d -p 8080:8080 -v ${{ secrets.MIMO_VIDEO_VOLUME }} -v ${{ secrets.MIMO_THUMBNAIL_VOLUME }} ${{ secrets.DOCKER_REPO }}
             sudo docker logs ${{ secrets.DOCKER_CONTAINER_NAME }}
