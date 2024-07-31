@@ -14,8 +14,8 @@
 
     <insert id="signUp" parameterType="userDto" useGeneratedKeys="true" keyProperty="id">
         INSERT
-        INTO user (id,username, usercontact, profileimageurl, accesstoken, refreshtoken)
-        VALUES (0,#{userName}, #{userContact}, #{profileImageUrl}, #{accessToken}, #{refreshToken});
+        INTO user (id,username,  profileimageurl, accesstoken, refreshtoken)
+        VALUES (0,#{userName}, #{profileImageUrl}, #{accessToken}, #{refreshToken});
     </insert>
 
     <delete id="unRegister" parameterType="Int">
@@ -24,10 +24,9 @@
 
     <update id="updateUser" parameterType="userDto" keyProperty="userContact">
         UPDATE user
-        SET username        = #{userName},
+        SET username  = #{userName},
             profileimageurl = #{profileImageUrl},
-            accesstoken     = #{accessToken},
-            refreshToken    = #{refreshToken}
-            WHERE userContact = #{userContact}
+            accesstoken = #{accessToken},
+            WHERE refreshToken = #{refreshToken}
     </update>
 </mapper>
