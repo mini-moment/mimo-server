@@ -24,9 +24,9 @@
 
     <update id="updateUser" parameterType="userDto" keyProperty="userContact">
         UPDATE user
-        SET username  = #{userName},
+        SET username        = #{userName},
             profileimageurl = #{profileImageUrl},
-            accesstoken = #{accessToken},
-            WHERE refreshToken = #{refreshToken}
+            accesstoken     = #{accessToken}
+        WHERE refreshToken = #{refreshToken}
     </update>
 </mapper>
